@@ -1,0 +1,6 @@
+{
+  "1993": { "non_vegetated_km2": 35.59, "urban_pct": 7.56, "lst_mean_c": null },
+  "2003": { "non_vegetated_km2": 53.18, "urban_pct": 10.75, "lst_mean_c": 29.4 },
+  "2013": { "non_vegetated_km2": 64.24, "urban_pct": 12.09, "lst_mean_c": 30.1 },
+  "2023": { "non_vegetated_km2": 71.49, "urban_pct": 13.29, "lst_mean_c": 31.2 }
+}
