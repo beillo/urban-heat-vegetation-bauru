@@ -8,6 +8,7 @@ const SOURCE_ID      = 'raster-source'
 const LAYER_ID       = 'raster-layer'
 const MASK_LAYER_ID  = 'boundary-mask-layer'
 const RENDER_SIZE    = 512
+const COGS_BASE_URL  = import.meta.env.VITE_COGS_BASE_URL || '/cogs'
 
 const LAYER_YEARS = {
   ndvi: CITY.yearsNDVI.map(String),
@@ -58,7 +59,7 @@ export default function RasterLayer({ map, layer, year }) {
 
     async function loadCog() {
       try {
-        const url = `/cogs/${layer}_${year}.tif`
+        const url = `${COGS_BASE_URL}/${layer}_${year}.tif`
         const arrayBuffer = await fetchCog(url, controller.signal)
         if (cancelled) return
 
@@ -149,7 +150,7 @@ export default function RasterLayer({ map, layer, year }) {
 
         const years    = LAYER_YEARS[layer] ?? []
         const nextYear = years[years.indexOf(year) + 1]
-        if (nextYear) backgroundPrefetch(`/cogs/${layer}_${nextYear}.tif`)
+        if (nextYear) backgroundPrefetch(`${COGS_BASE_URL}/${layer}_${nextYear}.tif`)
       } catch (err) {
         if (err.name === 'AbortError') return
         if (!cancelled) {

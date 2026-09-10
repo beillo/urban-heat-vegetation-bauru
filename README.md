@@ -45,10 +45,16 @@ npm run dev
 
 # Convert to COG after downloading from Google Drive
 python scripts/convert_to_cog.py "path/to/downloaded/folder"
+
+# Upload COGs to Vercel Blob (production/preview data source)
+vercel env pull .env.local
+node scripts/upload_cogs_to_blob.mjs
 ```
 
 > **Note:** COG files (`public/cogs/*.tif`) are gitignored due to size (173 MB).
-> Download or regenerate them using the pipeline above.
+> Locally, the app reads them straight from `public/cogs/`. In production/preview,
+> it fetches them from Vercel Blob via the `VITE_COGS_BASE_URL` env var — run the
+> upload script above after regenerating COGs so the deployed site stays in sync.
 
 ---
 © 2023 Lucas Beillo Oliveira · UNESP Presidente Prudente
